@@ -6,15 +6,19 @@
 </head>
 <body>
 <script>
+  // const hasOwn = Object.prototype.hasOwnProperty
+  const hasOwn = {}.hasOwnProperty
+  console.log(hasOwn)
+
   const dict = {}
 
-  const x = 'aaaaaa'
-
-  console.log(dict.hasOwnProperty('alice') ? dict.alice : undefined)
-  console.log(dict.hasOwnProperty(x) ? dict[x] : undefined)
+  dict.alice = 24
+  console.log(hasOwn.call(dict, 'hasOwnProperty'))
+  console.log(hasOwn.call(dict, 'alice'))
 
   dict.hasOwnProperty = 10
-  dict.hasOwnProperty('alice')
+  console.log(hasOwn.call(dict, 'hasOwnProperty'))
+  console.log(hasOwn.call(dict, 'alice'))
 </script>
 </body>
 </html>
