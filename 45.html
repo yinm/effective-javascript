@@ -8,9 +8,13 @@
 <script>
   const dict = {}
 
-  console.log(dict.hasOwnProperty('alice'))
-  console.log(dict.hasOwnProperty('toString'))
-  console.log(dict.hasOwnProperty('valueOf'))
+  const x = 'aaaaaa'
+
+  console.log(dict.hasOwnProperty('alice') ? dict.alice : undefined)
+  console.log(dict.hasOwnProperty(x) ? dict[x] : undefined)
+
+  dict.hasOwnProperty = 10
+  dict.hasOwnProperty('alice')
 </script>
 </body>
 </html>
