@@ -6,19 +6,37 @@
 </head>
 <body>
 <script>
-  // const hasOwn = Object.prototype.hasOwnProperty
-  const hasOwn = {}.hasOwnProperty
-  console.log(hasOwn)
+  function Dict(elements) {
+    this.elements = elements || {}
+  }
 
-  const dict = {}
+  Dict.prototype.has = function(key) {
+    return {}.hasOwnProperty.call(this.elements, key)
+  }
 
-  dict.alice = 24
-  console.log(hasOwn.call(dict, 'hasOwnProperty'))
-  console.log(hasOwn.call(dict, 'alice'))
+  Dict.prototype.get = function(key) {
+    return this.has(key)
+      ? this.elements[key]
+      : undefined
+  }
 
-  dict.hasOwnProperty = 10
-  console.log(hasOwn.call(dict, 'hasOwnProperty'))
-  console.log(hasOwn.call(dict, 'alice'))
+  Dict.prototype.set = function(key, val) {
+    this.elements[key] = val
+  }
+
+  Dict.prototype.remove = function(key) {
+    delete this.elements[key]
+  }
+
+  const dict = new Dict({
+    alice: 34,
+    bob: 24,
+    chris: 62
+  })
+
+  console.log(dict.has('alice'))
+  console.log(dict.get('bob'))
+  console.log(dict.has('valueOf'))
 </script>
 </body>
 </html>
